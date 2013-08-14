@@ -59,6 +59,10 @@ __END__
 
 =encoding utf-8
 
+=head1 STATUS NOTE
+
+This module is incomplete.  It's not very useful yet.
+
 =head1 NAME
 
 WebService::BasecampX - Perl interface to the bcx Basecamp API
@@ -69,7 +73,7 @@ WebService::BasecampX - Perl interface to the bcx Basecamp API
 
 =head1 DESCRIPTION
 
-WebService::BasecampX is
+WebService::BasecampX is a client implentation for the bcx Basecamp API
 
 =head1 AUTHOR
 

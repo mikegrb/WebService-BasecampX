@@ -1,3 +1,7 @@
+# STATUS NOTE
+
+This module is incomplete.  It's not very useful yet.
+
 # NAME
 
 WebService::BasecampX - Perl interface to the bcx Basecamp API
@@ -8,7 +12,7 @@ WebService::BasecampX - Perl interface to the bcx Basecamp API
 
 # DESCRIPTION
 
-WebService::BasecampX is
+WebService::BasecampX is a client implentation for the bcx Basecamp API
 
 # AUTHOR
 
