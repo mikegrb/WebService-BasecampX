@@ -1,6 +1,6 @@
 # NAME
 
-WebService::BasecampX - Blah blah blah
+WebService::BasecampX - Perl interface to the bcx Basecamp API
 
 # SYNOPSIS
 
