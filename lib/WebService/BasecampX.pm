@@ -4,7 +4,7 @@ use strict;
 use 5.008_005;
 our $VERSION = '0.01';
 
-use Mojo::UserAgent;
+use Net::HTTP::Spore;
 use Carp;
 
 sub new {
@@ -12,46 +12,79 @@ sub new {
 
     my $self = bless( {}, $class );
 
-    $self->{ua}  = Mojo::UserAgent->new;
-    $self->{url} = Mojo::URL->new(
-        'https://basecamp.com/' . $args{account_id} . '/api/v1/' );
+    my $spec = <<'EOS';
+    {
+    "name": "basecamp",
+    "version":"1",
+    "authentication" : true,
+    "methods":{
+      "projects":{
+        "path":"/projects.json",
+        "expected_status":["200"],
+        "method":"GET"
+      },
+      "archived_projects":{
+        "expected_status":["200"],
+        "path":"/projects/archived.json",
+        "method":"GET"
+      },
+      "project":{
+        "expected_status":["200"],
+        "path":"/projects/:project.json",
+        "method":"GET",
+        "required_params" : [
+           "project"
+        ]
+      },
+      "todolists":{
+        "expected_status":["200"],
+        "path":"/todolists.json",
+        "method":"GET"
+      },
+      "todolist":{
+        "expected_status":["200"],
+        "path":"/projects/:project/todolists/:todolist.json",
+        "method":"GET",
+        "required_params" : [
+           "project",
+           "todolist"
+        ]
+      },
+      "project_todolists":{
+        "expected_status":["200"],
+        "path":"/projects/:project/todolists.json",
+        "method":"GET",
+        "required_params" : [
+           "project"
+        ]
+      }
+    }
+    }
 
-    $self->{ua}->name('Perl WebService::BasecampX (mgreb@linode.com)');
-    $self->{url}->userinfo( $args{username} . ':' . $args{password} );
-
+EOS
+    $self->{_client} = Net::HTTP::Spore->new_from_string( $spec,
+              base_url => 'https://basecamp.com/'
+            . $args{account_id}
+            . '/api/v1/' );
+    $self->{_client}->enable('Format::JSON');
+    $self->{_client}->enable(
+        'Auth::Basic',
+        username => $args{username},
+        password => $args{password} );
     return $self;
 }
 
-sub _get {
-    my ( $self, $path ) = @_;
-    my $url = $self->{url} . $path;
-    my $tx  = $self->{ua}->get($url);
-    if ( my $res = $tx->success ) {
-        return $res->json;
-    }
-    else {
-        my ( $error, $code ) = $tx->error;
-        croak $code ? "Error $code: $error" : "Connection error: $error";
-    }
-}
+our $AUTOLOAD;
 
-sub projects {
+sub AUTOLOAD {
     my $self = shift;
-    return $self->_get('projects.json');
-}
-
-# TODO for a person too
-sub todolists {
-    my ( $self, $project_id ) = @_;
-    my $url = ( $project_id ? "projects/$project_id/" : '' ) . 'todolists.json';
-    return $self->_get($url);
-}
-
-# TODO for a person too
-sub todos {
-    croak "todos requires project id and todolist as arguments" unless @_ == 3;
-    my ( $self, $project_id, $todolist_id ) = @_;
-    return $self->_get("/projects/$project_id/todolists/$todolist_id.json");
+    ref($self) || die "$self is not an object";
+    my $method = $AUTOLOAD;
+    $method =~ s/.*://;
+    die "Can't call $method()"
+        unless grep { $_ eq $method }
+        @{ $self->{_client}->meta->local_spore_methods };
+    return $self->{_client}->$method(@_)->body;
 }
 
 1;
