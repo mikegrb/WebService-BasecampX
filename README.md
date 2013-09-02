@@ -9,6 +9,14 @@ WebService::BasecampX - Perl interface to the bcx Basecamp API
 # SYNOPSIS
 
     use WebService::BasecampX;
+    my $bc = WebService::BasecampX->new(
+        username   => $user,
+        password   => $pass,
+        account_id => $account
+    );
+    for my $project ( @{ $bc->projects } ) {
+        say join( "\t", $project->{last_event_at}, $project->{name} );
+    }
 
 # DESCRIPTION
 
