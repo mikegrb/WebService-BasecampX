@@ -20,7 +20,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "WebService::BasecampX",
   "PREREQ_PM" => {
-    "Mojo::UserAgent" => 0
+    "Net::HTTP::Spore" => 0
   },
   "TEST_REQUIRES" => {
     "Test::More" => "0.88"
