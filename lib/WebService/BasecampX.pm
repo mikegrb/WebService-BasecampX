@@ -24,43 +24,155 @@ sub new {
         "method":"GET"
       },
       "archived_projects":{
-        "expected_status":["200"],
         "path":"/projects/archived.json",
+        "expected_status":["200"],
         "method":"GET"
       },
       "project":{
-        "expected_status":["200"],
         "path":"/projects/:project.json",
+        "expected_status":["200"],
         "method":"GET",
         "required_params" : [
            "project"
         ]
       },
       "todolists":{
-        "expected_status":["200"],
         "path":"/todolists.json",
+        "expected_status":["200"],
         "method":"GET"
       },
-      "todolist":{
+      "project_todolists":{
+        "path":"/projects/:project/todolists.json",
         "expected_status":["200"],
+        "method":"GET",
+        "required_params" : [
+           "project"
+        ]
+      },
+      "todolist":{
         "path":"/projects/:project/todolists/:todolist.json",
+        "expected_status":["200"],
         "method":"GET",
         "required_params" : [
            "project",
            "todolist"
         ]
       },
-      "project_todolists":{
+      "todo":{
+        "path":"/projects/:project/todos/:todo.json",
         "expected_status":["200"],
-        "path":"/projects/:project/todolists.json",
+        "method":"GET",
+        "required_params" : [
+           "project",
+           "todo"
+        ]
+      },
+      "events":{
+        "path":"/events.json",
+        "expected_status":["200"],
+        "method":"GET",
+        "optional_params" : [
+           "since",
+           "page"
+        ]
+      },
+      "topics":{
+        "path":"/projects/:project/topics.json",
+        "expected_status":["200"],
+        "method":"GET",
+        "required_params" : [
+           "project"
+        ],
+        "optional_params" : [
+            "page"
+        ]
+      },
+      "people":{
+        "path":"/people.json",
+        "expected_status":["200"],
+        "method":"GET"
+      },
+      "person":{
+        "path":"/people/:person.json",
+        "expected_status":["200"],
+        "method":"GET",
+        "required_params" : [
+            "person"
+        ] 
+      },
+      "me":{
+        "path":"/people/me.json",
+        "expected_status":["200"],
+        "method":"GET"
+      },
+      "message":{
+        "path":"/projects/:project/messages/:message.json",
+        "expected_status":["200"],
+        "method":"GET",
+        "required_params" : [
+            "project",
+            "message"
+        ] 
+      }, 
+      "documents":{
+        "path":"/documents.json",
+        "expected_status":["200"],
+        "method":"GET"
+      },
+      "project_documents":{
+        "path":"/projects/:project/documents.json",
+        "expected_status":["200"],
         "method":"GET",
         "required_params" : [
            "project"
         ]
+      },
+      "document":{
+        "path":"/projects/:project/documents/:document.json",
+        "expected_status":["200"],
+        "method":"GET",
+        "required_params" : [
+           "project",
+           "document"
+        ]
+      },
+      "attachments":{
+        "path":"/attachments.json",
+        "expected_status":["200"],
+        "method":"GET"
+      },
+      "project_attachments":{
+        "path":"/projects/:project/attachments.json",
+        "expected_status":["200"],
+        "method":"GET",
+        "required_params" : [
+           "project"
+        ]
+      },
+      "upload":{
+        "path":"/projects/:project/uploads/:upload.json",
+        "expected_status":["200"],
+        "method":"GET",
+        "required_params" : [
+           "project",
+           "upload"
+        ]
+      },
+      "calendars":{
+        "path":"/calendars.json",
+        "expected_status":["200"],
+        "method":"GET"
+      },
+      "calendar":{
+        "path":"/calendars/:calendar.json",
+        "expected_status":["200"],
+        "method":"GET",
+        "required_params" : [
+          "calendar"
+        ]
       }
     }
     }
-
 EOS
     $self->{_client} = Net::HTTP::Spore->new_from_string( $spec,
               base_url => 'https://basecamp.com/'
