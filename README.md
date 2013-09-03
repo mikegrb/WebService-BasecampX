@@ -27,12 +27,6 @@ when I get enough tuits.
 
 # METHODS
 
-## archived\_projects
-
-Retrieve data for all archived projects user has access to.
-
-[See the Basecamp API docs for this method for more information or a sample of returned data.](https://github.com/37signals/bcx-api/blob/master/sections/projects.md)
-
 ## attachments
 
 Show attatchments for all projects.
@@ -228,6 +222,12 @@ Optional arguments: `page`
 ## projects
 
 Retrieve data for all projects user has access to.
+
+[See the Basecamp API docs for this method for more information or a sample of returned data.](https://github.com/37signals/bcx-api/blob/master/sections/projects.md)
+
+## projects\_archived
+
+Retrieve data for all archived projects user has access to.
 
 [See the Basecamp API docs for this method for more information or a sample of returned data.](https://github.com/37signals/bcx-api/blob/master/sections/projects.md)
 
