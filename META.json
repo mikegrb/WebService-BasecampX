@@ -58,7 +58,7 @@
          "web" : "https://github.com/mikegrb/WebService-BasecampX"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_contributors" : [
       "Rev Michael Greb <michael@thegrebs.com>",
       "mikegrb <mgreb@linode.com>"

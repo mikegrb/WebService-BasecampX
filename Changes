@@ -1,6 +1,8 @@
 Revision history for WebService-BasecampX
 
 {{$NEXT}}
+
+0.02  2013-09-02 23:24:12 EDT
         - Rename archived_projects to projects_archived
 
 0.01  2013-09-02 23:17:20 EDT
