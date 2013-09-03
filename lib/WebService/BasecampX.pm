@@ -69,6 +69,10 @@ provides 100% coverage for them.  Thus, it provides full read-only access to
 the Basecamp API.  Creating and modifying things is coming in a future release
 when I get enough tuits.
 
+Optional and required arguments for the various methods are expected as named
+arguments to the method.  See the synopsis call to C<project_todolists> for
+example usage.
+
 =head1 METHODS
 
 =for comment
