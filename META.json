@@ -4,7 +4,7 @@
       "Mike Greb <michael@thegrebs.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Milla version v1.0.4, Dist::Zilla version 4.300036, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "Dist::Milla version v1.0.4, Dist::Zilla version 4.300037, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "perl_5"
    ],
@@ -58,7 +58,7 @@
          "web" : "https://github.com/mikegrb/WebService-BasecampX"
       }
    },
-   "version" : "0.02",
+   "version" : "0.03",
    "x_contributors" : [
       "Rev Michael Greb <michael@thegrebs.com>",
       "mikegrb <mgreb@linode.com>"
